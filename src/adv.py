@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -33,15 +33,17 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+move_to = input('In which direction do you want the player to move (Valid commands are n, s, e and w): ')
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player('Boris', room['outside'])
 # Write a loop that:
 #
-# * Prints the current room name
+# * Prints the current room name that the player is currently in.
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
@@ -49,3 +51,15 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print(f"current room: {player.current_room.name}")
+    print(f"current room description: {player.current_room.description}")
+    move_to = input('In which direction do you want the player to move (Valid commands are n, s, e, w. Press "q" to quit): ')
+    if move_to == 'q':
+        break
+    elif move_to == 'n':
+        if player.current_room.n_to is None:
+            print('Cannot move in that direction')
+        else:
+            player.current_room = player.current_room.n_to
