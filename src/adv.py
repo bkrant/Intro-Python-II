@@ -80,6 +80,3 @@ while True:
             print('Cannot move in that direction')
         else:
             player.current_room = player.current_room.e_to
-
-p = Player('Xander', room['foyer'])
-#print(p.current_room.w_to)
