@@ -33,8 +33,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-move_to = input('In which direction do you want the player to move (Valid commands are n, s, e and w): ')
-
 #
 # Main
 #
@@ -56,10 +54,32 @@ while True:
     print(f"current room: {player.current_room.name}")
     print(f"current room description: {player.current_room.description}")
     move_to = input('In which direction do you want the player to move (Valid commands are n, s, e, w. Press "q" to quit): ')
+    directions = ['n', 's', 'e', 'w']
     if move_to == 'q':
+        print("You quit")
         break
+    elif move_to not in directions:
+        print(f'Valid entries are {directions}')
     elif move_to == 'n':
         if player.current_room.n_to is None:
             print('Cannot move in that direction')
         else:
             player.current_room = player.current_room.n_to
+    elif move_to == 's':
+        if player.current_room.s_to is None:
+            print('Cannot move in that direction')
+        else:
+            player.current_room = player.current_room.s_to
+    elif move_to == 'w':
+        if player.current_room.w_to is None:
+            print('Cannot move in that direction')
+        else:
+            player.current_room = player.current_room.w_to
+    elif move_to == 'e':
+        if player.current_room.e_to is None:
+            print('Cannot move in that direction')
+        else:
+            player.current_room = player.current_room.e_to
+
+p = Player('Xander', room['foyer'])
+#print(p.current_room.w_to)
